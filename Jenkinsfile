@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "dirajan/contactlist"
+        registry = "asgunasedevops/contactlist"
         registryCredential = 'dockerhub_id'
     }
     agent any
