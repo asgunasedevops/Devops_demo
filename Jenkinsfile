@@ -26,11 +26,12 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying Docker image...'
-                    sh '''
-                        sudo docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-                        sudo docker tag ${registry}:latest ${registry}
-                        sudo docker push ${registry}:latest
-                    '''
+            withCredentials([usernamePassword(credentialsId: registryCredential, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                sh '''
+                    echo "${DOCKER_PASSWORD}" | sudo docker login -u "${DOCKER_USERNAME}" --password-stdin
+                    sudo docker tag ${registry}:latest ${registry}
+                    sudo docker push ${registry}:latest
+                '''
                 }
             }
         }
