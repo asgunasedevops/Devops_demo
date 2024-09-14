@@ -1,3 +1,4 @@
+
 pipeline {
     environment {
         registry = "asgunasedevops/contactlist"
@@ -22,7 +23,7 @@ pipeline {
             }
         }
 
-   stage('Deploy our image') {
+       stage('Deploy our image') {
     steps {
         script {
             echo 'Deploying Docker image...'
@@ -104,4 +105,3 @@ pipeline {
         }
     }
 }
-        
